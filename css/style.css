@@ -1,0 +1,1030 @@
+/* VARIABLES */
+:root {
+	--loobi-yellow: #ffeb3b;
+	--loobi-light-gray: #e7e7e7;
+	--loobi-dark-gray: #4d4d4d;
+	--card-min-height: 200px;
+	--school-info-card-min-height: 550px;
+}
+
+/* GLOBAL */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	line-height: 1.6;
+	scrollbar-width: none;
+}
+
+body {
+	font-family: 'Comic Sans MS', Arial, Helvetica, sans-serif;
+}
+
+img {
+	display: block;
+}
+
+/* nav */
+nav {
+	position: sticky;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 70px;
+	padding: 0 5vw;
+	background-color: var(--loobi-yellow);
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+}
+
+#logo {
+	max-height: 60px;
+}
+
+.nav-links {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 40%;
+}
+
+.nav-links li {
+	list-style: none;
+}
+
+.nav-links a {
+	text-decoration: none;
+	color: var(--loobi-dark-gray);
+	letter-spacing: 3px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.nav-links a.current {
+	border-bottom: 2px solid var(--loobi-dark-gray);
+}
+
+.nav-links a:hover {
+	border-bottom: 2px solid var(--loobi-dark-gray);
+}
+
+.burger {
+	display: none;
+	cursor: pointer;
+}
+
+.burger div {
+	width: 25px;
+	height: 2px;
+	background-color: var(--loobi-dark-gray);
+	margin: 5px;
+	transition: all 0.3s ease;
+}
+
+/* modal */
+.modalOpenBtn {
+	font-size: 30px;
+	padding: 10px 20px;
+	border-radius: 5px;
+	text-decoration: none;
+	font-weight: bold;
+	letter-spacing: 3px;
+	background: linear-gradient(180deg, rgba(255, 24, 94, 0.8) 1.56%, #ff729c 100%);
+	color: var(--loobi-light-gray) !important;
+	cursor: pointer;
+	text-transform: uppercase;
+	border: 1px solid var(--loobi-dark-gray);
+	transition: background-color 0.5s ease-out;
+	transition: padding 0.5s ease;
+	box-shadow: 0px 3px 5px var(--loobi-dark-gray);
+}
+
+.home-showcase .modalOpenBtn {
+	margin-top: 2rem;
+}
+
+.modalOpenBtn:hover {
+	background: var(--loobi-yellow);
+	color: var(--loobi-dark-gray) !important;
+}
+
+#modalBtn:hover {
+	background: whitesmoke;
+	color: #158fef;
+}
+
+#form-message .error {
+	background: #f8d7da;
+	color: #721c24;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+#form-message .success {
+	background: #d4edda;
+	color: #155724;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+/* Make the nice input box animations */
+.form-section {
+	width: 100%;
+	position: relative;
+	height: 50px;
+	font-size: 20px;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+
+.form-section input {
+	width: 100%;
+	height: 100%;
+	color: #595f6e;
+	padding-top: 20px;
+	border: none;
+	outline: none;
+}
+
+.form-section label {
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	border-bottom: 1px solid black;
+}
+
+.form-section .resume {
+	margin-top: 30px;
+	margin-bottom: 0px;
+	border-bottom: none;
+}
+
+.form-section label::after {
+	content: "";
+	position: absolute;
+	left: 0px;
+	bottom: -1px;
+	height: 100%;
+	width: 100%;
+	border-bottom: 3px solid var(--loobi-yellow);
+	transform: translateX(-100%);
+	transition: all 0.5s ease;
+}
+
+.content-name {
+	position: absolute;
+	bottom: 2px;
+	left: 0;
+	transition: all 0.3s ease;
+}
+
+.submit-section {
+	margin-top: 30px;
+	text-align: left;
+}
+
+.submit-section a {
+	text-decoration: none;
+}
+
+#submitBtn {
+	background: var(--loobi-dark-gray);
+	color: var(--loobi-light-gray);
+	padding: 10px 20px;
+	border-radius: 5px;
+	margin-top: 15px;
+	left: 0;
+	font-size: 16px;
+	transition: background-color 0.2s ease-out;
+}
+
+#submitBtn:hover {
+	background: var(--loobi-yellow);
+	color: var(--loobi-dark-gray);
+}
+
+.form input:focus + .label-name .content-name,
+.form input:valid + .label-name .content-name {
+	transform: translateY(-50%);
+	bottom: 10px;
+	font-size: 18px;
+	color: var(--loobi-dark-gray);
+}
+
+.form input:focus + .label-name::after,
+.form input:valid + .label-name::after {
+	transform: translateX(0%);
+}
+
+.form input[name='name'],
+.form input[name='nationality'],
+.form input[name='email'],
+.form input[name='xiaoqu'],
+.form input[name='tel'],
+.form input[name='age'] {
+	font-size: 18px;
+}
+
+.form #fileInput {
+	padding-top: 35px;
+}
+
+.form .resume-section {
+	height: 70px;
+}
+/* HOME */
+.home-page-content {
+	display: grid;
+	grid-template-areas: "sh sh sh" "cs cs cs" "fa fa fa" "foot foot foot";
+	width: 100%;
+}
+
+/* showcase */
+.home-showcase {
+	margin-top: 70px;
+	grid-area: sh;
+	margin: 0;
+	width: 100%;
+	height: 700px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.home-showcase .showcase-bg {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	height: 700px;
+	background: url(../img/event2.jpg);
+	-webkit-filter: brightness(120%) saturate(110%) contrast(110%);
+	filter: brightness(190%) saturate(110%) contrast(110%);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: -1;
+}
+
+.home-showcase .showcase-bg::after {
+	content: '';
+	background: #000;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0.6;
+}
+
+.home-showcase h1 {
+	padding-top: 1rem;
+	font-size: 5rem;
+	color: white;
+	margin: 0;
+	padding-bottom: 1rem;
+	text-shadow: 0px 3px 5px var(--loobi-dark-gray);
+}
+
+/* course content */
+.course-area {
+	width: 100%;
+}
+
+.course-area h1 {
+	/* text-shadow: 0px 3px 5px var(--loobi-light-gray); */
+	font-size: 2.5rem;
+	color: var(--loobi-dark-gray);
+	padding-top: 1rem;
+}
+
+.course-area {
+	grid-area: cs;
+	background: var(--loobi-yellow);
+	width: 100%;
+	text-align: center;
+}
+
+.courses .card-area {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.courses .course-card {
+	background: var(--loobi-light-gray);
+	height: var(--card-min-height);
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+	width: 100%;
+	margin: 1.2rem;
+	padding: 1.5rem;
+	color: var(--loobi-dark-gray);
+	box-shadow: 0px 3px 5px var(--loobi-dark-gray);
+}
+
+.courses .course-card h2 {
+	font-size: 30px;
+	margin: 1rem;
+}
+
+.courses .course-card p {
+	font-size: 18px;
+	height: 200px;
+}
+
+.courses .course-card .card-img {
+	width: 90%;
+	height: auto;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 10px;
+}
+
+.button-area {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 150px;
+	background: var(--loobi-dark-gray);
+}
+
+.course-area .button-area {
+	background: var(--loobi-yellow);
+}
+
+/* Feature area */
+.feature-area {
+	overflow: hidden;
+	grid-area: fa;
+	background: var(--loobi-dark-gray);
+	color: var(--loobi-dark-gray);
+	width: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+}
+
+.feature-area .features h1 {
+	font-size: 2.5rem;
+	color: var(--loobi-light-gray);
+	padding: 1rem;
+}
+
+.feature-block-area {
+	display: none;
+}
+
+/* carousel */
+.card-carousel {
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.card-carousel .my-card {
+	/* width: 40%; */
+	padding: 1.5rem;
+	position: relative;
+	-webkit-transform: scale(0.6) translateY(-2rem);
+	transform: scale(0.6) translateY(-2rem);
+	opacity: 0.2;
+	cursor: pointer;
+	pointer-events: none;
+	background: var(--loobi-light-gray);
+	color: var(--loobi-dark-gray);
+	border-radius: 10px;
+	transition: 0.5s;
+}
+
+.card-carousel .my-card.active {
+	-webkit-transform: scale(1) translateY(0) translateX(0);
+	transform: scale(1) translateY(0) translateX(0);
+	opacity: 1;
+	pointer-events: auto;
+	transition: 0.5s;
+}
+
+.card-carousel .my-card.prev,
+.card-carousel .my-card.next {
+	-webkit-transform: scale(0.8) translateY(-1rem) translateX(0);
+	transform: scale(0.8) translateY(-1rem) translateX(0);
+	opacity: 0.6;
+	pointer-events: auto;
+	transition: 0.5s;
+}
+
+/* card styles */
+.card-carousel .my-card::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	font-size: 3rem;
+	font-weight: 300;
+	color: var(--loobi-dark-gray) !important;
+}
+
+.feature-area .features .feature-text {
+	font-size: 16px;
+	color: var(--loobi-dark-gray);
+	padding: 1rem 0 0 0;
+}
+
+.feature-area .features #feature-description {
+	font-size: 20px;
+	color: var(--loobi-light-gray);
+	padding: 1rem;
+	margin-bottom: 2rem;
+}
+
+.features .feature-icon {
+	font-size: 12rem;
+}
+
+.features .fa-comments {
+	color: rgb(248, 166, 179);
+}
+
+.features .fa-cookie-bite {
+	color: rgb(0, 180, 0);
+}
+
+.features .fa-flask {
+	color: rgb(13, 211, 211);
+}
+
+.features .fa-palette {
+	color: orange;
+}
+
+.features .fa-laugh-beam {
+	color: rgb(172, 8, 172);
+}
+
+.feature-block-area .feature {
+	padding: 1.5rem;
+}
+
+.feature-block-area .feature h2 {
+	margin-top: 1.5rem;
+	font-size: 2rem;
+	color: var(--loobi-light-gray);
+}
+
+/* footer */
+/* change this to display grid and put qr code on left and locations on right */
+/* make whole area yellow background with dark gray text */
+.footer-area {
+	grid-area: foot;
+	display: grid;
+	grid-template-areas: 'button button button' 'wc loc loc' 'icp icp icp';
+	background: var(--loobi-yellow);
+	color: var(--loobi-dark-gray);
+}
+
+.footer-area .footerBtnArea {
+	grid-area: button;
+}
+
+.footer-area .wechat {
+	height: 200px;
+	grid-area: wc;
+	display: flex;
+
+	justify-content: center;
+	align-items: center;
+}
+
+.footer-area .wechat h1 {
+	font-size: 2.5rem;
+	padding: 1rem;
+}
+
+.footer-area .wechat img {
+	height: 80%;
+}
+
+.footer-area .locations {
+	grid-area: loc;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	padding: 1.5rem;
+	font-size: 20px;
+	background: var(--loobi-yellow);
+	color: var(--loobi-dark-gray);
+}
+
+.footer-area .icpCopy {
+	grid-area: icp;
+	width: 100%;
+	background: var(--loobi-dark-gray);
+	color: var(--loobi-light-gray);
+	padding-bottom: 5px;
+	text-align: center;
+}
+
+/* ABOUT */
+
+.about-page-content {
+	display: grid;
+	grid-template-areas: 'head' 'info' 'foot';
+}
+
+.about-page-content .header-area {
+	grid-area: head;
+	text-align: center;
+	padding: 1rem;
+	background: var(--loobi-light-gray);
+	color: var(--loobi-dark-gray);
+}
+
+.about-page-content .header-area h1 {
+	font-size: 3rem;
+}
+
+.about-page-content .info-area {
+	grid-area: info;
+	display: flex;
+	background: var(--loobi-yellow);
+	justify-content: space-around;
+	align-items: center;
+	padding: 1rem;
+}
+
+.about-page-content .break {
+	display: none;
+}
+
+.about-page-content .school-info {
+	width: 45%;
+	background: var(--loobi-light-gray);
+	padding: 1rem;
+	border-radius: 10px;
+	box-shadow: 0px 3px 5px var(--loobi-dark-gray);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: var(--school-info-card-min-height);
+}
+
+.about-page-content .school-info .info-text {
+	text-align: center;
+	color: var(--loobi-dark-gray);
+	padding: 1rem 0;
+}
+
+.about-page-content .info-area img {
+	border-radius: 10px;
+	width: 90%;
+	height: auto;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/* JOBS */
+.jobs-page-content {
+	width: 100%;
+	background: var(--loobi-light-gray);
+}
+
+.jobs-page-content .info-area {
+	width: 100%;
+}
+
+.jobs-page-content .info-area img {
+	/* border-radius: 10px; */
+	width: auto;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	max-height: 500px;
+}
+
+.jobs-page-content .footer-area .button-area {
+	height: 250px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 2rem;
+}
+
+.jobs-page-content .footer-area .button-area h1 {
+	font-size: 3em;
+	letter-spacing: 3px;
+	color: var(--loobi-light-gray);
+	padding: 1rem;
+}
+
+.jobs-page-content .info-block {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background: var(--loobi-light-gray);
+	color: var(--loobi-dark-gray);
+}
+
+.jobs-page-content .info-block h1 {
+	padding: 1rem;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	font-size: 2em;
+}
+
+.jobs-page-content .info-block p {
+	padding-bottom: 1rem;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	font-size: 1.5rem;
+}
+
+.jobs-page-content .info-block.second {
+	background: var(--loobi-dark-gray);
+	color: var(--loobi-light-gray);
+}
+
+.jobs-page-content .break {
+	display: block;
+	height: 2vh;
+	background: var(--loobi-yellow);
+}
+
+/* MOBILE */
+@media screen and (max-width: 1310px) {
+	.nav-links {
+		width: 60%;
+	}
+
+	.courses .course-card {
+		width: 90%;
+		height: var(--card-min-height);
+	}
+
+	.courses .course-card p {
+		font-size: 18px;
+	}
+
+	.courses .course-card .card-img {
+		height: auto;
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	/* Mobile styles */
+
+	/* NAV */
+	nav {
+		height: 8vh;
+	}
+
+	#logo {
+		height: 60px;
+	}
+
+	body {
+		/* hide the nav items that we moved off screen */
+		overflow-x: hidden;
+	}
+
+	.nav-links {
+		position: absolute;
+		right: 0px;
+		height: 92vh;
+		top: 70px;
+		background-color: var(--loobi-yellow);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		clip-path: circle(10% at 90% -50%);
+		transition: all 0.7s ease-in;
+	}
+	.nav-links li {
+		opacity: 0;
+	}
+	.burger {
+		display: block;
+	}
+
+	.nav-active {
+		clip-path: circle(90% at 90% 35%);
+	}
+
+	/* burger icon */
+	.toggle .line1 {
+		transform: rotate(-45deg) translate(-5px, 6px);
+	}
+
+	.toggle .line2 {
+		opacity: 0;
+	}
+
+	.toggle .line3 {
+		transform: rotate(45deg) translate(-4px, -5px);
+	}
+
+	/* links */
+
+	/* links CSS fade Animation */
+	@keyframes navLinkFade {
+		from {
+			opacity: 0;
+			transform: translateX(50px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0px);
+		}
+	}
+	/* HOME */
+	.home-page-content {
+		display: grid;
+		grid-template-areas: "sh" "cs" "fa" "foot";
+		width: 100%;
+	}
+
+	.home-showcase {
+		min-height: 450px;
+	}
+
+	.home-showcase h1 {
+		font-size: 13vw;
+		color: white;
+		margin: 0;
+		padding-bottom: 1rem;
+	}
+	.courses .card-area {
+		flex-direction: column;
+	}
+
+	.courses .card-area p {
+		height: 100%;
+	}
+	/* features */
+	.feature-area .features {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.feature-area .features .feature-block-area .feature:nth-child(odd) {
+		background: var(--loobi-light-gray);
+		color: var(--loobi-dark-gray);
+	}
+
+	.feature-area .features .feature-block-area .feature:nth-child(odd) p,
+	.feature-area .features .feature-block-area .feature:nth-child(odd) h2 {
+		background: var(--loobi-light-gray);
+		color: var(--loobi-dark-gray);
+		text-shadow: 0px;
+	}
+
+	.feature-block-area {
+		display: block;
+	}
+
+	.feature-area .features .feature-text {
+		color: var(--loobi-light-gray);
+		font-size: 20px;
+	}
+
+	.card-carousel {
+		display: none;
+	}
+
+	/* footer */
+
+	.footer-area {
+		grid-area: foot;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		background: var(--loobi-yellow);
+		color: var(--loobi-dark-gray);
+	}
+
+	.footer-area .wechat {
+		height: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.footer-area .wechat h1 {
+		font-size: 7vw;
+		padding: 1rem;
+	}
+
+	.footer-area .wechat img {
+		padding-bottom: 2rem;
+		width: 70%;
+	}
+
+	.footer-area .locations {
+		background: var(--loobi-dark-gray);
+		color: var(--loobi-light-gray);
+		padding: 1.5rem;
+		font-size: 20px;
+	}
+
+	.footer-area .icpCopy {
+		width: 100%;
+		background: var(--loobi-dark-gray);
+		color: var(--loobi-light-gray);
+		padding-bottom: 5px;
+	}
+
+	/* ABOUT */
+
+	.about-page-content {
+		display: grid;
+		grid-template-areas: 'head' 'info' 'foot';
+	}
+
+	.about-page-content .header-area {
+		grid-area: head;
+		text-align: center;
+		padding: 1rem;
+		background: var(--loobi-light-gray);
+		color: var(--loobi-dark-gray);
+	}
+
+	.about-page-content .header-area h1 {
+		font-size: 3rem;
+	}
+
+	.about-page-content .school-info {
+		border-radius: 0px;
+		background: none;
+		box-shadow: none;
+		display: block;
+		width: 100%;
+		padding: 0;
+		height: auto;
+	}
+
+	.about-page-content {
+		display: grid;
+		grid-template-areas: 'hd' 'info' 'foot';
+	}
+
+	.about-page-content .header-area {
+		grid-area: hd;
+		padding: 2rem;
+		text-align: center;
+		background: var(--loobi-light-gray);
+		color: var(--loobi-dark-gray);
+	}
+
+	.about-page-content .header-area h1 {
+		margin-bottom: 1.5rem;
+		font-size: 2em;
+	}
+
+	.about-page-content .header-area p {
+		margin-bottom: 1rem;
+		font-size: 1.5em;
+	}
+
+	.about-page-content .info-area {
+		grid-area: info;
+		display: block;
+	}
+
+	.info-area .wanke-info .info-text {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 1rem;
+		text-align: center;
+		background: var(--loobi-dark-gray);
+		color: var(--loobi-light-gray);
+	}
+
+	.info-area .info-text h1 {
+		font-size: 2em;
+		margin-bottom: 1rem;
+	}
+
+	.info-area .info-text p {
+		font-size: 1.5em;
+		margin-bottom: 1rem;
+		padding: 0 1rem 0 1rem;
+	}
+
+	.info-area .luotuo-info .info-text {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 1rem;
+		text-align: center;
+		background: var(--loobi-light-gray);
+		color: var(--loobi-dark-gray);
+	}
+
+	.info-area .break {
+		display: block;
+		height: 2vh;
+		background: var(--loobi-yellow);
+	}
+
+	.about-page-content .info-area img {
+		border-radius: 0;
+		width: 100%;
+		height: auto;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	/* JOBS */
+	.jobs-page-content .info-area {
+		width: 100%;
+	}
+
+	.jobs-page-content .info-block img {
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.jobs-page-content .info-block #schedule {
+		width: 100%;
+		height: auto;
+	}
+
+	.jobs-page-content .info-block {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		background: var(--loobi-light-gray);
+		color: var(--loobi-dark-gray);
+	}
+
+	.jobs-page-content .info-block h1 {
+		padding: 1rem;
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+		font-size: 2em;
+	}
+
+	.jobs-page-content .info-block p {
+		padding-bottom: 1rem;
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+		font-size: 1.5rem;
+	}
+
+	.jobs-page-content .info-block.second {
+		background: var(--loobi-dark-gray);
+		color: var(--loobi-light-gray);
+	}
+
+	.jobs-page-content .footer-area .button-area {
+		height: 200px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding-bottom: 2rem;
+	}
+
+	.jobs-page-content .footer-area .button-area h1 {
+		font-size: 6vw;
+		letter-spacing: 3px;
+		color: var(--loobi-light-gray);
+		padding: 1rem;
+	}
+}
